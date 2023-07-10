@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import { recursosAprendizaje as data } from './db';
+//En esta sección se importan los módulos necesarios para construir la interfaz de usuario en React Native.
+//`React` y `useState` se importan de la biblioteca 'react'.
+//`View`, `Text`, `StyleSheet`, `FlatList` y `TouchableOpacity` se importan de la biblioteca 'react-native' para construir componentes de la interfaz de usuario y estilos.
+//`recursosAprendizaje` se importa de './db'. Presumiblemente, es un conjunto de datos que contiene recursos de aprendizaje.
 
 const TemasRecursos = ({navigation}) => {
-
+    //Aquí se define un componente funcional llamado `TemasRecursos`.
     const [selectedCampo, setSelectedCampo] = useState('');
+// Utiliza el hook `useState` para inicializar el estado `selectedCampo`
+// como una cadena vacía y la función `setSelectedCampo` para actualizar ese estado.
+
   const RenderCampoItem = ({item}) => {
     return (
       <View style={styles.campoItem}>
@@ -15,6 +22,11 @@ const TemasRecursos = ({navigation}) => {
           keyExtractor={(item, index) => index.toString()}
         />
       </View>
+//RenderCampoItem` es un componente funcional que renderiza los elementos relacionados con un campo específico.
+//Renderiza un `View` que contiene el título del campo (`item.campo`) y una lista de recursos utilizando `FlatList`.
+//Para cada elemento de la lista de recursos, se renderiza un componente `RenderRecursoItem` y se pasa el elemento como prop `item`.
+//`keyExtractor` se utiliza para asignar una clave única a cada elemento de la lista.
+      
     );
   };
 
@@ -27,12 +39,20 @@ const TemasRecursos = ({navigation}) => {
         <Text style={styles.recursoItemTitle}>{item.titulo}</Text>
       </TouchableOpacity>
     );
+//`RenderRecursoItem` es un componente funcional que renderiza un recurso individual.
+//Utiliza `TouchableOpacity` para crear un área de presionar en el recurso.
+//Cuando se presiona un recurso, se navega a la pantalla 'DetalleCurso' y se pasa el objeto `item` como parámetro con la clave 'newsItem'.
+//Se muestra el tipo del recurso (`item.tipo`) y el título (`item.titulo`) dentro del componente `TouchableOpacity`.
+
   };
 
   const handleCampoFilter = (campo) => {
     setSelectedCampo(campo);
     navigation.navigate('RecursoList', {campo: campo})
-  };
+  };//handleCampoFilter` es una función que se ejecuta cuando se selecciona un campo.
+//Actualiza el estado `selectedCampo` con el campo seleccionado y navega a la pantalla 'RecursoList', 
+//pasando el campo como parámetro con la clave 'campo'.
+  
 
   return (
     <View style={styles.container}>
@@ -77,10 +97,17 @@ const TemasRecursos = ({navigation}) => {
         keyExtractor={(item, index) => index.toString()}
       />
     </View>
+//El componente `TemasRecursos` devuelve una vista contenedora con el estilo `styles.container`.
+//Dentro de la vista, hay varios componentes `TouchableOpacity` que representan los botones de filtro para cada campo.
+//Cada botón tiene un estilo condicional basado en si el `selectedCampo` coincide con el campo correspondiente. Si es así, se aplica el estilo `selectedFilterButton`.
+//Al hacer clic en un botón de filtro, se llama a la función `handleCampoFilter` con el campo correspondiente.
+//Luego, se muestra el título "Temas y Recursos" con estilo `styles.heading`.
+//Finalmente, se muestra una lista de elementos de `data` utilizando `FlatList`. Cada elemento se renderiza dentro de un componente `TouchableOpacity` y se pasa al componente `RenderCampoItem`.
+    
   );
 };
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({  // Estilos CSS para los componentes
   container: {
     flex: 1,
     paddingTop: 20,
@@ -149,6 +176,9 @@ const styles = StyleSheet.create({
   filterButtonText: {
     color: 'white',
   },
+  //Aquí se define un objeto `styles` que contiene estilos
+  // CSS utilizando la función `StyleSheet.create()` de React Native.
 });
 
-export default TemasRecursos;
+export default TemasRecursos;// Se exporta el componente `TemasRecursos` como el valor predeterminado del módulo. 
+//Esto permitirá que otros módulos lo importen y lo utilicen.
