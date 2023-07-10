@@ -181,4 +181,4 @@ const styles = StyleSheet.create({  // Estilos CSS para los componentes
 });
 
 export default TemasRecursos;// Se exporta el componente `TemasRecursos` como el valor predeterminado del módulo. 
-//Esto permitirá que otros módulos lo importen y lo utilicen.
+//Esto permitirá que otros módulos lo importen y lo utilicen
